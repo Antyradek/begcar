@@ -1,0 +1,11 @@
+BEGCAR
+
+Breeding
+Evolutionary
+Genetic
+Cellular
+Automata
+Rule
+
+This program simulates CA treating rules as genes, mixing and mutating them in appriopriate way.
+It's first purpose is to check, whetner this type of CA can be used in games.
