@@ -27,6 +27,7 @@ int main(int argCount, char** args)
         cout << "Cannot open file: " + (string)args[1] << endl;
         exit(CANT_OPEN_FILE_ERROR);
     }
+    simulation.printAll();
 
     return 0;
 }

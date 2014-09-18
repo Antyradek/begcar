@@ -17,4 +17,6 @@ Structure of simulation file:
 <rule count>
 <capital letter character> = <rule with '/'>
 <...rest of the rules>
-<data>
+<data grid - use '*' for dead cell>
+
+Please NEVER EVER give incorrect file, or everything will blow up!

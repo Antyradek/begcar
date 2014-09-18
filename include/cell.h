@@ -14,7 +14,6 @@ class Cell
          */
         Cell();
 
-        Cell(Rule& rule);
 
         virtual ~Cell();
 
@@ -26,9 +25,32 @@ class Cell
          */
         void addNeighbor(Rule* rule);
 
+        /** \brief Make cell alive and set a rule to it
+         *
+         * \param rule Rule*
+         * \return void
+         *
+         */
+        void bornWithRule(Rule* rule);
+
+        /** \brief Make a cell dieeeeeeeee! Mwahahaha!
+         *
+         * \return void
+         *
+         */
+        void kill();
+
+        /** \brief Gives a character displaying this cell
+         *
+         * \return char Rule character, or ' ' if dead
+         *
+         */
+        char getRuleChar();
+
         //is the cell alive
         bool alive;
 
+        Rule* rule;
     protected:
         //how many neighbors does cell have
         int neighborCount;
@@ -36,7 +58,6 @@ class Cell
         //what rules have neighbors
         Rule* neighborRules[8];
 
-        Rule* rule;
     private:
 };
 
