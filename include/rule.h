@@ -1,20 +1,26 @@
 #ifndef RULE_H
 #define RULE_H
+#include <string>
+#include <iostream>
+using namespace std;
 
-
+/** \brief Rule defining B/S and mark
+ */
 class Rule
 {
     public:
-        /** \brief Rule defining 16 logic fields by bits in char
+
+        /** \brief Rule created from string of the format "3/23", or "/12345678", or "3/32"
          *
-         * \param birth Bits defining births (8-1)
-         * \param survive Bits defining survives (8-1)
+         * \param rule string String with '/' inside
          *
          */
-
-        Rule(char birth, char survive);
+        Rule(string rule, char letter);
         virtual ~Rule();
     protected:
+        bool birth[8];
+        bool survive[8];
+        char letter;
     private:
 };
 
