@@ -68,4 +68,7 @@ Structure of simulation file:
 
 Please NEVER EVER give incorrect file, or everything will blow up!
 
+Read manual for more info. Just "man ./begcar_man".
+
 (C) Radosław Świątkiewicz
+antyradek@gmail.com

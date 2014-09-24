@@ -1,0 +1,112 @@
+.TH BEGCAR 1 September\ 2014 version\ 1.0
+." This is a comment, above we define headers
+
+.SH NAME 
+begcar - Breeding Evolutionary Genetic Cellular Automata Rule
+
+.SH SYNOPSIS 
+.B begcar 
+.I file
+.I speed
+
+.SH DESCRIPTION
+Simulates life-like cellular automata with mixing rules upon birth.
+
+.SH STOPPING
+This program works as infinite loop. To stop, use 
+.B ^C
+
+." The problem is, I can't make newline, so I use RS and RE
+.SH FILE FORMAT
+.RS 
+.I width height mutation_chance
+.RE
+.RS 
+.I rule_count
+.RE
+.RS
+.I rule_letter
+.B =
+.IB birth / survival
+." Italics, then bold for '/' and again italics
+.RE
+.RS
+.I ...
+.RE
+.RS
+.I data
+.RE
+
+.SH VARIABLES
+.I width
+.RS
+The width of simulation space
+.RE
+.I height
+.RS
+The height of simulation space
+.RE
+.I mutation_chance
+.RS
+Chance for each bit of rule to have random value. This number is in promiles (1/1000), and cannot be greater than 1000.
+.RE
+.I rule_letter
+.RS
+Capital letter used in data section to draw cells with that rule
+.RE
+.IB birth / survival
+.RS
+Characters in any order defining active bits of rule. In other words, as you simply write a rule. For example "3/23", which creates Conway's Game Of Life.
+.RE
+
+.SH EXAMPLES
+Creates a 5x5 area with Conway's Game Of Life glider travelling bottom-left. At each move it has 1/1000 chance to mutate.
+.RS
+5 5 1
+.RE
+.RS
+1
+.RE
+.RS
+G = 3/23
+.RE
+.RS
+*****
+.RE
+.RS
+**G**
+.RE
+.RS
+*G***
+.RE
+.RS
+*GGG*
+.RE
+.RS
+*****
+.RE
+
+.SH BUGS
+Parsing scripts do not check input in advanced way. Giving incorrect file will result in uncaught errors.
+
+.SH SEE ALSO 
+To understand functionality of this program, take a look at examples included in
+.B example_simulations
+directory. You can also follow a code on github page 
+.B https://github.com/Antyradek/begcar
+
+.SH COPYRIGHT
+.B begcar
+is Copyright (c) 2014-infinity Radosław Świątkiewicz.
+
+Protected by
+.B GPLv3
+as usual, just DuckDuckGo it.
+
+.SH AUTHORS 
+Radosław Świątkiewicz
+.B (arq) 
+.RS
+.B E-mail
+antyradek@gmail.com
+.RE
