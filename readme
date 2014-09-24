@@ -13,7 +13,7 @@ It's first purpose is to check, whetner this type of CA can be used in games.
 Probably it all will end with chaos...
 
 Structure of simulation file:
-<width> <height>
+<width> <height> <mutation chance in promiles>
 <rule count>
 <capital letter character> = <rule with '/'>
 <...rest of the rules>

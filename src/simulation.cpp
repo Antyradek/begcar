@@ -2,23 +2,11 @@
 
 Simulation::Simulation()
 {
-    //nullify array of rules
-    for(int i = 0; i < RULE_ARRAY_SIZE; i++)
-    {
-        rules[i] = nullptr;
-    }
+
 }
 
 Simulation::~Simulation()
 {
-    //clean rules array
-    for(int i = 0; i < RULE_ARRAY_SIZE; i++)
-    {
-        if(rules[i] != nullptr)
-        {
-            delete(rules[i]);
-        }
-    }
     //clean data array
     delete[] data;
 }
@@ -30,9 +18,14 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
     cout << "Opening " + filename << endl;
     int ruleCount;
     //reading initial data
-    simulationFile >> width >> height >> ruleCount;
-    cout << "Size of simulation area is: " << width << "x" << height << "\n" << ruleCount << " rule(s) are expected" << endl;
+    simulationFile >> width >> height >> mutationChance >> ruleCount;
+    cout << "Size of simulation area is: " << width << "x" << height << "\n" << "mutation chance: " << mutationChance << " promiles\n" << ruleCount << "rule(s) are expected" << endl;
     //reading rules
+    Rule* rules[26];
+    for(int i = 0; i < 26; i++)
+    {
+        rules[i] = nullptr;
+    }
     for(int i = 0; i < ruleCount; i++)
     {
         char ruleLetter;
@@ -50,7 +43,7 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
             throw(FileNotFoundException());
         }
         cout << "Read " << ruleString << " marked with " << ruleLetter << endl;
-        rules[ruleLetter - 'A'] = new Rule(ruleString, ruleLetter);
+        rules[ruleLetter - 'A'] = new Rule(ruleString);
     }
     //reading data
     data = new Cell[width * height]; //array of dead cells in row
@@ -75,11 +68,17 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
         }
     }
     simulationFile.close();
+    for(int i = 0; i < 26; i++)
+    {
+        if(rules[i] != nullptr)
+            delete(rules[i]);
+    }
 }
 
 Cell& Simulation::cellAt(int x, int y)
 {
-    return (data[y * width + x]);
+    return (data[(y % height) * width + (x % width)]);
+    //return (data[y * width + x]);
 }
 
 void Simulation::printAll()
@@ -94,3 +93,41 @@ void Simulation::printAll()
         cout << endl;
     }
 }
+
+void Simulation::recalculateNeighbors()
+{
+    //clear neighbors number first
+    for(int i = 0; i < width * height; i++)
+    {
+        data[i].resetNeighbors();
+    }
+    //if cell is alive, it informs their neighbors about existence
+    for(int y = 0; y < height; y++)
+    {
+        for(int x = 0; x < width; x++)
+        {
+            if(cellAt(x,y).alive)
+            {
+                Rule* cellRule = cellAt(x,y).rule;
+                //going clockwise from left
+                cellAt(x - 1, y).addNeighbor(cellRule);
+                cellAt(x - 1, y - 1).addNeighbor(cellRule);
+                cellAt(x, y - 1).addNeighbor(cellRule);
+                cellAt(x + 1, y - 1).addNeighbor(cellRule);
+                cellAt(x + 1, y).addNeighbor(cellRule);
+                cellAt(x + 1, y + 1).addNeighbor(cellRule);
+                cellAt(x, y + 1).addNeighbor(cellRule);
+                cellAt(x - 1, y + 1).addNeighbor(cellRule);
+            }
+        }
+    }
+}
+
+void Simulation::action()
+{
+    for(int i = 0; i < width * height; i++)
+    {
+        data[i].action(mutationChance);
+    }
+}
+

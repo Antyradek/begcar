@@ -5,7 +5,7 @@
 #include "cell.h"
 #include <fstream>
 #include <iostream>
-#define RULE_ARRAY_SIZE 26
+#define OUT_OF_CELL_SPACE_ERROR 3
 using namespace std;
 
 /** \brief Main simulation wrapper
@@ -23,7 +23,7 @@ class Simulation
          */
         void loadFromFile(string filename) throw (FileNotFoundException);
 
-        /** \brief Get the cell at position, (0,0) is at top-left corner
+        /** \brief Get the cell at position, (0,0) is at top-left corner. Using toroidal space.
          *
          * \param x int
          * \param y int
@@ -38,14 +38,29 @@ class Simulation
          *
          */
         void printAll();
+
+        /** \brief Recalculates neighbors for each alive, or dead cell
+         *
+         * \return void
+         *
+         */
+        void recalculateNeighbors();
+
+        /** \brief Makes new cells born and old ones die, assigns new rules by the way
+         *
+         * \return void
+         *
+         */
+        void action();
+
     protected:
         //size of simulation area
         int width;
         int height;
-        //rules for each ASCII letter
-        Rule* rules[RULE_ARRAY_SIZE];
         //whole data of cells
         Cell* data;
+        //mutation chance in promiles (1/1000)
+        int mutationChance;
     private:
 };
 
