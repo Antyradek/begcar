@@ -77,7 +77,7 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
 
 Cell& Simulation::cellAt(int x, int y)
 {
-    return (data[(y % height) * width + (x % width)]);
+    return (data[((y + height) % height) * width + ((x + width) % width)]);
     //return (data[y * width + x]);
 }
 

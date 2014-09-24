@@ -10,7 +10,54 @@ Rule
 This program simulates CA treating rules as genes, mixing and mutating them in appriopriate way.
 It's first purpose is to check, whetner this type of CA can be used in games.
 
-Probably it all will end with chaos...
+In most of the times, it all ends in chaos, but is nevertheless fun to watch.
+Here we see for example as R-Pendomino (game of life 3/23) meets almost indestructible wall (/1234)
+                        U           UU    UUUU U                                
+                                         U  UUU                      U          
+                                         UU               UU   U     U          
+                                         UU                UUUUU     U          
+                                                  U         U   U               
+                                                  UUU           U               
+                UU                            UUU   UUU U      U                
+               U  UU                         U U UUU U UU                       
+              U   UU                        UU UUUU   UU                        
+                   U                         UU U U                             
+               U   U                          U UU              U               
+                   U        UU                 UU                U              
+                 U UU       UU                                 UUU              
+                UU                                                              
+                 UU                                                             
+                   U                                                            
+                   UU    U                               U UUU                  
+                    U    GGGGGGGGGGGGGGGGG                                      
+                 UUU U  U                G                                      
+                 UUUUUUUU                G                U                     
+                       GU                G       UU        UU  UU               
+                     UUU                 G       UU         U  UU               
+                      U    GGGGGGGGGGGGGGG                UU    U               
+                       U                      U                                 
+                       UU           UU    UU U U                               
+Simple Glider can mutate to change into plague ovelwhelming whole area.
+A    UUU UUA Q A U  
+  AA U A UUA A   UBU
+ A A   AAAAA A    UA
+AAAA         A    BA
+A AAA  AA   A J   B 
+I  A  AA    A  JJJ  
+II   AA A          I
+     A  SSAAI IIAAI 
+I I  AA   AA I    A 
+A S A A  A A I  I S 
+A    AA AA   SGI SA 
+AA   A  A    G   AI 
+I AAA A U   G     AI
+     U  U  AGGGISSAI
+MA SY   UUU    II  S
+  Y    UUU Q     S  
+MMU        Q I QQ   
+A YY     O Q Q QU  A
+S QQE Y U  A Q Q    
+S  EWY Y AUA Q      
 
 Structure of simulation file:
 <width> <height> <mutation chance in promiles>
@@ -20,3 +67,5 @@ Structure of simulation file:
 <data grid - use '*' for dead cell>
 
 Please NEVER EVER give incorrect file, or everything will blow up!
+
+(C) Radosław Świątkiewicz
