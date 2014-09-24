@@ -11,7 +11,6 @@ SOURCES = $(shell ls $(SOURCES_DIR)/*.cpp)
 OBJECTS = $(subst $(SOURCES_DIR)/,$(OBJECTS_DIR)/,$(SOURCES:.cpp=.o))
  
 $(EXECUTABLE): $(OBJECTS)
-	echo objects: $(OBJECTS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
  
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.cpp
