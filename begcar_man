@@ -7,10 +7,26 @@ begcar - Breeding Evolutionary Genetic Cellular Automata Rule
 .SH SYNOPSIS 
 .B begcar 
 .I file
-.I speed
+.RI "[" "speed" 
+=
+.BR "200" "]"
 
 .SH DESCRIPTION
 Simulates life-like cellular automata with mixing rules upon birth.
+
+.SH OPTIONS
+.I file
+.RS
+Simulation file in the format given below.
+.RE
+.I speed
+.RS
+Speed of simulation (time between each step) in miliseconds. Default
+.BR "200" ","
+which gives 
+.B 1/5
+of second.
+.RE
 
 .SH STOPPING
 This program works as infinite loop. To stop, use 
