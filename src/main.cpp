@@ -29,9 +29,9 @@ int main(int argCount, char** args)
     {
         simulation.loadFromFile(args[1]);
     }
-    catch(FileNotFoundException e)
+    catch(BadFileException e)
     {
-        cout << "Cannot open file: " + (string)args[1] << endl;
+        cout << "Error reading file: " + (string)args[1] << endl;
         exit(CANT_OPEN_FILE_ERROR);
     }
     simulation.printAll();

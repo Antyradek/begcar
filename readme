@@ -66,7 +66,7 @@ Structure of simulation file:
 <...rest of the rules>
 <data grid - use '*' for dead cell>
 
-Please NEVER EVER give incorrect file, or everything will blow up!
+Incorrect files should not blow up everything, but who knows...
 
 Read manual for more info. Just "man ./begcar_man".
 

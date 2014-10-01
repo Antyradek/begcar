@@ -11,15 +11,28 @@ Simulation::~Simulation()
     delete[] data;
 }
 
-void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
+void Simulation::loadFromFile(string filename) throw(BadFileException)
 {
-    fstream simulationFile(filename, fstream::in);
-    if(!simulationFile.good()) throw(FileNotFoundException());
+    //opening the file
+    ifstream simulationFile(filename, ifstream::in);
+    if(!simulationFile.good())
+    {
+        cout << "Error opening the file." << endl;
+        throw(BadFileException());
+    }
+
     cout << "Opening " + filename << endl;
     int ruleCount;
+
     //reading initial data
     simulationFile >> width >> height >> mutationChance >> ruleCount;
-    cout << "Size of simulation area is: " << width << "x" << height << "\n" << "mutation chance: " << mutationChance << " promiles\n" << ruleCount << "rule(s) are expected" << endl;
+    if(!simulationFile.good())
+    {
+        cout << "Error while reading initial conditions." << endl;
+        throw(BadFileException());
+    }
+    cout << "Size of simulation area is: " << width << "x" << height << "\n" << "mutation chance: " << mutationChance << " promiles\n" << ruleCount << " rule(s) are expected" << endl;
+
     //reading rules
     Rule* rules[26];
     for(int i = 0; i < 26; i++)
@@ -32,15 +45,20 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
         char uselessEquationMark;
         string ruleString;
         simulationFile >> ruleLetter >> uselessEquationMark >> ruleString;
+        if(!simulationFile.good())
+        {
+            cout << "Error reading rule " << i + 1 << endl;
+            throw(BadFileException());
+        }
         if(uselessEquationMark != '=')
         {
-            cout << "Error while reading rules! It seems " << uselessEquationMark << " is not \'=\'=." << endl;
-            throw(FileNotFoundException());
+            cout << "Error while reading rules! It seems " << uselessEquationMark << " is not \'=\'." << endl;
+            throw(BadFileException());
         }
         if(ruleLetter > 'Z' || ruleLetter < 'A')
         {
             cout << "Error while reading rules! It seems rule name is not a capital letter." << endl;
-            throw(FileNotFoundException());
+            throw(BadFileException());
         }
         cout << "Read " << ruleString << " marked with " << ruleLetter << endl;
         rules[ruleLetter - 'A'] = new Rule(ruleString);
@@ -52,10 +70,15 @@ void Simulation::loadFromFile(string filename) throw(FileNotFoundException)
         //reading row by row
         string row;
         simulationFile >> row;
+        if(!simulationFile.good())
+        {
+            cout << "Unable to read data grid." << endl;
+            throw(BadFileException());
+        }
         if((int)row.length() < width)
         {
             cout << "Not enough characters in data grid!" << endl;
-            throw(FileNotFoundException());
+            throw(BadFileException());
         }
         for(int j = 0; j < width; j++)
         {

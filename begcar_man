@@ -102,9 +102,6 @@ G = 3/23
 *****
 .RE
 
-.SH BUGS
-Parsing scripts do not check input in advanced way. Giving incorrect file will result in uncaught errors.
-
 .SH SEE ALSO 
 To understand functionality of this program, take a look at examples included in
 .B example_simulations

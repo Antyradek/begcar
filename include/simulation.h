@@ -1,7 +1,7 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 #include "rule.h"
-#include "filenotfoundexception.h"
+#include "badfileexception.h"
 #include "cell.h"
 #include <fstream>
 #include <iostream>
@@ -21,7 +21,7 @@ class Simulation
          * \return void
          *
          */
-        void loadFromFile(string filename) throw (FileNotFoundException);
+        void loadFromFile(string filename) throw (BadFileException);
 
         /** \brief Get the cell at position, (0,0) is at top-left corner. Using toroidal space.
          *
