@@ -30,18 +30,18 @@ public:
     /** \brief Does the cell survive when having neighborCount neighbors?
      *
      * \param neighborCount int
-     * \return bool
+     * \return bool If survives
      *
      */
-    bool survives(int neighborCount);
+    bool survives(const int neighborCount) const;
 
-    /** \brief Does new cell born when having neighborCount
+    /** \brief Does new cell born when having neighborCount?
      *
      * \param neighborCount int
      * \return bool
      *
      */
-    bool borns(int neighborCount);
+    bool borns(const int neighborCount) const;
 
     /** \brief Guess what it does...
      *
@@ -49,7 +49,7 @@ public:
      */
     bool operator== (const Rule& otherRule) const;
 
-    /** \brief This function generates letter based on rule
+    /** \brief This function generates letter based on rule and sets it.
      *
      * \return void
      *

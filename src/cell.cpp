@@ -31,7 +31,7 @@ void Cell::kill()
     alive = false;
 }
 
-char Cell::getRuleChar()
+char Cell::getRuleChar() const
 {
     if(!alive) return ' ';
     else
@@ -53,7 +53,7 @@ void Cell::resetNeighbors()
     }
 }
 
-void Cell::action(int mutationChance)
+void Cell::action(const int mutationChance)
 {
      //life after death
     if(alive && !rule -> survives(neighborCount))

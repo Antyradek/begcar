@@ -25,7 +25,6 @@ class Cell
         /** \brief Add neighbor with a rule
          *
          * \param rule Rule* Rule of a neighbor
-         * \return void
          *
          */
         void addNeighbor(Rule* rule);
@@ -33,7 +32,6 @@ class Cell
         /** \brief Make cell alive and set a rule to it
          *
          * \param newRule Rule*
-         * \return void
          *
          */
         void bornWithRule(Rule* newRule);
@@ -50,7 +48,7 @@ class Cell
          * \return char Rule character, or ' ' if dead
          *
          */
-        char getRuleChar();
+        char getRuleChar() const;
 
         /** \brief Sets neighborCount to 0 and nulls neighborRules array
          *
@@ -59,20 +57,20 @@ class Cell
          */
         void resetNeighbors();
 
-        /** \brief The same as action, but allows born cells to mutate
+        /** \brief Kill, or born new cells based on neighbors
          *
          * \param mutationChance int Mutation chance in promiles (1/1000)
-         * \return Rule* The new rule this cell is born with, or null if it died
          *
          */
-        void action(int mutationChance);
+        void action(const int mutationChance);
 
         //is the cell alive
         bool alive;
+
         //remember, that cell needs to hold previous rule, even when dead, to that neighbors point to it
         Rule* rule;
 
-        //how many neighbors does cell have
+        //how many neighbors does the cell have
         int neighborCount;
 
     protected:

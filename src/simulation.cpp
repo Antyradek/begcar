@@ -11,7 +11,7 @@ Simulation::~Simulation()
     delete[] data;
 }
 
-void Simulation::loadFromFile(string filename) throw(BadFileException)
+void Simulation::loadFromFile(const string filename) throw(BadFileException)
 {
     //opening the file
     ifstream simulationFile(filename, ifstream::in);
@@ -98,13 +98,13 @@ void Simulation::loadFromFile(string filename) throw(BadFileException)
     }
 }
 
-Cell& Simulation::cellAt(int x, int y)
+Cell& Simulation::cellAt(const int x, const int y) const
 {
     return (data[((y + height) % height) * width + ((x + width) % width)]);
     //return (data[y * width + x]);
 }
 
-void Simulation::printAll()
+void Simulation::printAll() const
 {
     //it goes row after row
     for(int y = 0; y < height; y++)

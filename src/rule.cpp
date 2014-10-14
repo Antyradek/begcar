@@ -46,14 +46,14 @@ Rule::~Rule()
     //dtor
 }
 
-bool Rule::survives(int neighborCount)
+bool Rule::survives(const int neighborCount) const
 {
     if(neighborCount > 8 || neighborCount < 1) return false;
     //survive[0] holds info about survival for 1 neighbor
     return(survive[neighborCount - 1]);
 }
 
-bool Rule::borns(int neighborCount)
+bool Rule::borns(const int neighborCount) const
 {
     if(neighborCount > 8 || neighborCount < 1) return false;
     return(birth[neighborCount - 1]);

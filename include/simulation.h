@@ -13,15 +13,21 @@ using namespace std;
 class Simulation
 {
     public:
+        /** \brief Generate empty simulation
+         *
+         *
+         */
         Simulation();
+
         virtual ~Simulation();
+
         /** \brief Loads simulation from file
          *
          * \param filename string Filename with simulation
          * \return void
-         *
+         * \throw BadFileException In case there was a problem reading file
          */
-        void loadFromFile(string filename) throw (BadFileException);
+        void loadFromFile(const string filename) throw (BadFileException);
 
         /** \brief Get the cell at position, (0,0) is at top-left corner. Using toroidal space.
          *
@@ -30,14 +36,14 @@ class Simulation
          * \return Cell&
          *
          */
-        Cell& cellAt(int x, int y);
+        Cell& cellAt(const int x, const int y) const;
 
-        /** \brief Print all the cells
+        /** \brief Print all the cells to stout
          *
          * \return void
          *
          */
-        void printAll();
+        void printAll() const;
 
         /** \brief Recalculates neighbors for each alive, or dead cell
          *
@@ -46,7 +52,7 @@ class Simulation
          */
         void recalculateNeighbors();
 
-        /** \brief Makes new cells born and old ones die, assigns new rules by the way
+        /** \brief Makes new cells born and old ones die, assigns newly generated rules by the way
          *
          * \return void
          *
